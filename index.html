@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock Paper Scissors Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="connect4.css">
+    <script src="connect4.js"></script>
 </head>
 <body>
-  <div class="game-container">
-    <h1>Rock Paper Scissors</h1>
-    <p>First to 5 rounds wins!</p>
-
-    <div class="buttons">
-      <button id="rock">🪨 Rock</button>
-      <button id="paper">📄 Paper</button>
-      <button id="scissors">✂️ Scissors</button>
-    </div>
-
-    <div id="result"></div>
-    <div id="score">
-      Wins: <span id="wins">0</span> |
-      Losses: <span id="losses">0</span> |
-      Ties: <span id="ties">0</span>
-    </div>
-    <div id="final"></div>
-  </div>
-
-  <script src="script.js"></script>
+    <h1>Connect 4</h1>
+    <h2 id="winner"></h2>
+    <div id="board"></div>
 </body>
 </html>
