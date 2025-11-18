@@ -1,38 +1,81 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-    <script src="./index.js"></script>
-    <title>Tic-Tac-Toe</title>
+    <title>Game Hub</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <main class="background">
-        <section class="title">
-            <h1>Tic Tac Toe</h1>
-        </section>
-        <section class="display">
-            Player <span class="display-player playerX">X</span>'s turn
-        </section>
-        <section class="container">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-        </section>
-        <section class="display announcer hide"></section>
-        <section class="controls">
-            <button id="reset">Reset</button>
-        </section>
-    </main>
+
+    <h1>🎮 Game Hub</h1>
+
+    <!-- SCOREBOARD -->
+    <div id="scoreboard">
+        <h2>Scoreboard</h2>
+        <p>Tic Tac Toe Wins: <span id="score_ttt">0</span></p>
+        <p>Sudoku Wins: <span id="score_sudoku">0</span></p>
+        <p>Rock Paper Scissor Wins: <span id="score_rps">0</span></p>
+        <p>Connect4 Wins: <span id="score_c4">0</span></p>
+    </div>
+
+    <div class="menu">
+        <button onclick="loadGame('tic_tac_toe/index.html')">Tic Tac Toe</button>
+        <button onclick="loadGame('sudoku/index.html')">Sudoku</button>
+        <button onclick="loadGame('rock_paper/index.html')">Rock Paper Scissor</button>
+        <button onclick="loadGame('connect4/index.html')">Connect 4</button>
+    </div>
+
+    <div class="game-frame">
+        <iframe id="gameScreen" src="" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function loadGame(url) {
+            document.getElementById("gameScreen").src = url;
+        }
+
+        // Load initial scores from localStorage
+        const scores = {
+            ttt: Number(localStorage.getItem("score_ttt") || 0),
+            sudoku: Number(localStorage.getItem("score_sudoku") || 0),
+            rps: Number(localStorage.getItem("score_rps") || 0),
+            c4: Number(localStorage.getItem("score_c4") || 0)
+        };
+
+        function updateDisplay() {
+            document.getElementById("score_ttt").innerText = scores.ttt;
+            document.getElementById("score_sudoku").innerText = scores.sudoku;
+            document.getElementById("score_rps").innerText = scores.rps;
+            document.getElementById("score_c4").innerText = scores.c4;
+        }
+
+        updateDisplay();
+
+        // Receive win messages from iframe games
+        window.addEventListener("message", (event) => {
+            const game = event.data;
+
+            if (game === "tic_tac_toe_win") {
+                scores.ttt++;
+                localStorage.setItem("score_ttt", scores.ttt);
+            }
+            if (game === "sudoku_win") {
+                scores.sudoku++;
+                localStorage.setItem("score_sudoku", scores.sudoku);
+            }
+            if (game === "rock_paper_win") {
+                scores.rps++;
+                localStorage.setItem("score_rps", scores.rps);
+            }
+            if (game === "connect4_win") {
+                scores.c4++;
+                localStorage.setItem("score_c4", scores.c4);
+            }
+
+            updateDisplay();
+        });
+    </script>
+
 </body>
 </html>

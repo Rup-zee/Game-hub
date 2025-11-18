@@ -1,0 +1,23 @@
+#scoreboard {
+    background: white;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+#scoreboard h2 {
+    margin-top: 0;
+}
+#scoreboard p {
+    font-size: 18px;
+    margin: 6px 0;
+}
+.game-frame iframe {
+    width: 100%;      /* full width of container */
+    max-width: 900px; /* optional max width */
+    height: 600px;    /* increase height if needed */
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
